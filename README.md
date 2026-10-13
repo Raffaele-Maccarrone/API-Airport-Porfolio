@@ -27,6 +27,12 @@ The application is structured around the following relational entities:
 * **Atomic Transactions**: Orders containing multiple tickets are handled inside atomic blocks to guarantee data consistency.
 * **Seat Validations**: Custom validations ensure tickets cannot exceed physical airplane boundaries.
 
+## API Endpoints & ViewSets
+* **Optimized Queries**: Uses `select_related` and `prefetch_related` across viewsets to prevent N+1 query performance issues.
+* **Dynamic Annotations**: Calculates available tickets dynamically for flights.
+* **Filtering**: Supports query parameters for filtering flights by date, route, or airplane.
+* **Security**: Orders are restricted securely to the authenticated owner.
+
 ### Prerequisites
 * Python 3.10+
 * Poetry or pip
