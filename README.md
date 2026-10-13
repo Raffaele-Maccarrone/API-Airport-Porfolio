@@ -42,18 +42,6 @@ Once the server is running, you can access the following endpoints under `/api/a
 
 ---
 
-## 📸 Documentation & Screenshots
-
-### Swagger UI (API Documentation)
-*(Coloque aqui a captura de tela do Swagger)*
-> Access at: `http://127.0.0.1:8000/api/doc/swagger/`
-
-### Django Admin Panel
-*(Coloque aqui a captura de tela do Admin)*
-> Access at: `http://127.0.0.1:8000/admin/`
-
----
-
 ## 🐳 Running with Docker
 You can run the entire application (Django + PostgreSQL) easily using Docker Compose:
 
