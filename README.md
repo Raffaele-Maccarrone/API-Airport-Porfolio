@@ -43,6 +43,13 @@ Once the server is running, you can access the following endpoints under `/api/a
 * `GET /POST /api/airport/flights/` - View/manage flights (supports filtering by `date`, `route`, `airplane`)
 * `GET /POST /api/airport/orders/` - View/create authenticated user orders and tickets
 
+## Running with Docker
+You can run the entire application (Django + PostgreSQL) using Docker Compose:
+
+1. Build and start the containers:
+   ```bash
+   docker-compose up --build
+
 ### Prerequisites
 * Python 3.10+
 * Poetry or pip
