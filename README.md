@@ -22,6 +22,11 @@ The application is structured around the following relational entities:
 * **Flight**: Links routes, airplanes, departure/arrival times, and crew members.
 * **Order & Ticket**: Handles user ticket purchases with strict database constraints and seat validation to prevent double-booking.
 
+## Serializers & Business Logic
+* **Nested Serializers**: Used in list and detail views to provide rich, descriptive JSON outputs (e.g., expanding airport details inside routes, or airplane types inside airplanes).
+* **Atomic Transactions**: Orders containing multiple tickets are handled inside atomic blocks to guarantee data consistency.
+* **Seat Validations**: Custom validations ensure tickets cannot exceed physical airplane boundaries.
+
 ### Prerequisites
 * Python 3.10+
 * Poetry or pip
