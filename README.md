@@ -33,6 +33,16 @@ The application is structured around the following relational entities:
 * **Filtering**: Supports query parameters for filtering flights by date, route, or airplane.
 * **Security**: Orders are restricted securely to the authenticated owner.
 
+## API Endpoints
+Once the server is running, you can access the following endpoints under `/api/airport/`:
+* `GET /POST /api/airport/airports/` - Manage airports
+* `GET /POST /api/airport/routes/` - Manage routes
+* `GET /POST /api/airport/airplane-types/` - Manage airplane types
+* `GET /POST /api/airport/airplanes/` - Manage airplanes
+* `GET /POST /api/airport/crew/` - Manage flight crew
+* `GET /POST /api/airport/flights/` - View/manage flights (supports filtering by `date`, `route`, `airplane`)
+* `GET /POST /api/airport/orders/` - View/create authenticated user orders and tickets
+
 ### Prerequisites
 * Python 3.10+
 * Poetry or pip
