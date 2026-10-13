@@ -14,7 +14,13 @@ A robust RESTful API system for tracking worldwide airport flights, managing fle
 * Flight scheduling with dynamic calculation of available tickets.
 * Order and Ticket system with strict seat validation constraints.
 
-##  Getting Started
+## Database Structure / Models
+The application is structured around the following relational entities:
+* **Airport & Route**: Manages origins, destinations, and flight distances.
+* **Airplane & AirplaneType**: Controls aircraft fleets, seating capacities, and row/seat constraints.
+* **Crew**: Stores flight personnel details.
+* **Flight**: Links routes, airplanes, departure/arrival times, and crew members.
+* **Order & Ticket**: Handles user ticket purchases with strict database constraints and seat validation to prevent double-booking.
 
 ### Prerequisites
 * Python 3.10+
