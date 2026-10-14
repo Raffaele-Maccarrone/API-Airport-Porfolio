@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.db.models import Count, F
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from airport.models import (
@@ -28,14 +28,28 @@ from airport.serializers import (
 )
 
 
+class IsAdminOrIfAuthenticatedReadOnly(permissions.BasePermission):
+    """
+    Permite leitura apenas para usuários autenticados, mas apenas administradores
+    podem criar, editar ou apagar (POST, PUT, PATCH, DELETE).
+    """
+
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return request.user and request.user.is_authenticated
+        return bool(request.user and request.user.is_staff)
+
+
 class AirportViewSet(viewsets.ModelViewSet):
     queryset = Airport.objects.all()
     serializer_class = AirportSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
 
 class RouteViewSet(viewsets.ModelViewSet):
     queryset = Route.objects.select_related("source", "destination")
     serializer_class = RouteSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
@@ -46,11 +60,13 @@ class RouteViewSet(viewsets.ModelViewSet):
 class AirplaneTypeViewSet(viewsets.ModelViewSet):
     queryset = AirplaneType.objects.all()
     serializer_class = AirplaneTypeSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
 
 class AirplaneViewSet(viewsets.ModelViewSet):
     queryset = Airplane.objects.select_related("airplane_type")
     serializer_class = AirplaneSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
@@ -61,6 +77,7 @@ class AirplaneViewSet(viewsets.ModelViewSet):
 class CrewViewSet(viewsets.ModelViewSet):
     queryset = Crew.objects.all()
     serializer_class = CrewSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
 
 class FlightViewSet(viewsets.ModelViewSet):
@@ -73,11 +90,12 @@ class FlightViewSet(viewsets.ModelViewSet):
         .prefetch_related("crew")
         .annotate(
             tickets_available=F("airplane__rows")
-                              * F("airplane__seats_in_row")
-                              - Count("tickets")
+            * F("airplane__seats_in_row")
+            - Count("tickets")
         )
     )
     serializer_class = FlightSerializer
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     def get_serializer_class(self):
         if self.action == "list":

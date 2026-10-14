@@ -47,5 +47,5 @@ You can run the entire application (Django + PostgreSQL) easily using Docker Com
 
 1. **Clone the repository**:
    ```bash
-   git clone [https://github.com/Raffaele-Maccarrone/API-Airport-Porfolio.git](https://github.com/Raffaele-Maccarrone/API-Airport-Porfolio.git)
-   cd API-Airport-Porfolio
+git clone [https://github.com/Raffaele-Maccarrone/API-Airport-Porfolio.git](https://github.com/Raffaele-Maccarrone/API-Airport-Porfolio.git)
+cd API-Airport-Porfolio
